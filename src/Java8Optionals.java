@@ -25,7 +25,7 @@ public class Java8Optionals {
     System.out.println("Nullable Optional with a value " + nullableOptional.get());
   }
 
-  public void checkIfOptionalHasAValue(){
+  public void checkIfOptionalHasAValue() {
     Optional<String> optional1 = Optional.ofNullable("Some value");
     Optional<String> optional2 = Optional.of("Some other value");
     Optional<String> optional3 = Optional.empty();
@@ -35,23 +35,32 @@ public class Java8Optionals {
     System.out.println("Does optional3 hold a value? " + optional3.isPresent());
   }
 
-  public void doSomethingIfValuePresentInOptional(){
+  public void doSomethingIfValuePresentInOptional() {
     Optional<String> optional1 = Optional.empty();
     Optional<String> optional2 = Optional.ofNullable("Something");
 
     // The first statement will not be executed since the value is null
-    optional1.ifPresent(optionalValue -> System.out.println("The value in this Optional is " + optionalValue));
-    optional2.ifPresent(optionalValue -> System.out.println("The value in this Optional is " + optionalValue));
+    optional1.ifPresent(
+        optionalValue -> System.out.println("The value in this Optional is " + optionalValue));
+    optional2.ifPresent(
+        optionalValue -> System.out.println("The value in this Optional is " + optionalValue));
   }
 
-  public void setDefaultValueForAnOptionalWithOrElse(){
+  public void setDefaultValueForAnOptionalWithOrElse() {
     // If null is used directly in the ofNullable call, the line below returns a class cast exception
     // because the method expects a String type. Null can be assigned to any type. See below
-//    String value = (String) Optional.ofNullable(null).orElse("Some Default Value");
+    // String value = (String) Optional.ofNullable(null).orElse("Some Default Value");
     String creationValue = null;
     String returnedValue = Optional.ofNullable(creationValue).orElse("SomeDefaultValue");
 
     System.out.println("The value returned from this optional is " + returnedValue);
+  }
+
+  public void setDefaultValueForAnOptionalWithOrElseGet() {
+    // OrElseGet uses a Supplier to return the default value
+    String creationValue = null;
+    String returnedValue = Optional.ofNullable(creationValue).orElseGet(() -> "Some Default Value from a Supplier");
+    System.out.println("The value returned for this optional is from the Supplier " + returnedValue);
   }
 
 }

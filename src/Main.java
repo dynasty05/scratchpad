@@ -33,6 +33,7 @@ public class Main {
         j8opt.checkIfOptionalHasAValue();
         j8opt.doSomethingIfValuePresentInOptional();
         j8opt.setDefaultValueForAnOptionalWithOrElse();
+        j8opt.setDefaultValueForAnOptionalWithOrElseGet();
 
     }
 }
