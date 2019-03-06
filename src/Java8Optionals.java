@@ -47,7 +47,7 @@ public class Java8Optionals {
   }
 
   public void setDefaultValueForAnOptionalWithOrElse() {
-    // If null is used directly in the ofNullable call, the line below returns a class cast exception
+    // If null literal is used directly in the ofNullable call, the line below returns a class cast exception
     // because the method expects a String type. Null can be assigned to any type. See below
     // String value = (String) Optional.ofNullable(null).orElse("Some Default Value");
     String creationValue = null;
@@ -61,6 +61,8 @@ public class Java8Optionals {
     String creationValue = null;
     String returnedValue = Optional.ofNullable(creationValue).orElseGet(() -> "Some Default Value from a Supplier");
     System.out.println("The value returned for this optional is from the Supplier " + returnedValue);
+
+
   }
 
 }

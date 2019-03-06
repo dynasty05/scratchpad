@@ -26,14 +26,24 @@ public class Main {
             m.printStackTrace();
         }*/
 
+
         Java8Optionals j8opt = new Java8Optionals();
         j8opt.playWithEmptyOptionals();
-        j8opt.playWithNonNullableOptionals();
+//        j8opt.playWithNonNullableOptionals();
         j8opt.playWithNullableOptionals();
-        j8opt.checkIfOptionalHasAValue();
+//        j8opt.checkIfOptionalHasAValue();
         j8opt.doSomethingIfValuePresentInOptional();
+        marker();
         j8opt.setDefaultValueForAnOptionalWithOrElse();
+        marker();
         j8opt.setDefaultValueForAnOptionalWithOrElseGet();
+        marker();
+        /*MaximumFromList maximumFromList = new MaximumFromList();
+        System.out.println(maximumFromList.getMaxFromOneItemList());*/
 
+    }
+
+    public static void marker(){
+        System.out.println("***************************************************");
     }
 }
