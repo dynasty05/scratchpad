@@ -47,7 +47,8 @@ public class Java8Optionals {
   }
 
   public void setDefaultValueForAnOptionalWithOrElse() {
-    // If null literal is used directly in the ofNullable call, the line below returns a class cast exception
+    // Note: Unlike, orelseget(), whether the optional has a value or not, the object specified in orelse() is always created.
+    // Note: If null literal is used directly in the ofNullable call, the line below returns a class cast exception
     // because the method expects a String type. Null can be assigned to any type. See below
     // String value = (String) Optional.ofNullable(null).orElse("Some Default Value");
     String creationValue = null;
@@ -57,12 +58,18 @@ public class Java8Optionals {
   }
 
   public void setDefaultValueForAnOptionalWithOrElseGet() {
+    // Note: The object in orelseget() is not created if the optional is empty
     // OrElseGet uses a Supplier to return the default value
     String creationValue = null;
     String returnedValue = Optional.ofNullable(creationValue).orElseGet(() -> "Some Default Value from a Supplier");
     System.out.println("The value returned for this optional is from the Supplier " + returnedValue);
+  }
 
-
+  public void playWithOrElseThrow() {
+    // Note: This throws an exception if the optional is empty, instead of returning a default value
+    String nullValue = null;
+    Optional.ofNullable(nullValue).orElseThrow(() -> new IllegalArgumentException());
+    Optional.ofNullable(nullValue).orElseThrow(IllegalArgumentException::new);
   }
 
 }

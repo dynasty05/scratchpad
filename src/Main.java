@@ -26,6 +26,9 @@ public class Main {
             m.printStackTrace();
         }*/
 
+        /*MaximumFromList maximumFromList = new MaximumFromList();
+        System.out.println(maximumFromList.getMaxFromOneItemList());*/
+
 
         Java8Optionals j8opt = new Java8Optionals();
         j8opt.playWithEmptyOptionals();
@@ -38,8 +41,11 @@ public class Main {
         marker();
         j8opt.setDefaultValueForAnOptionalWithOrElseGet();
         marker();
-        /*MaximumFromList maximumFromList = new MaximumFromList();
-        System.out.println(maximumFromList.getMaxFromOneItemList());*/
+        j8opt.playWithOrElseThrow();
+
+
+
+
 
     }
 
