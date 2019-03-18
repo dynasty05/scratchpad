@@ -1,4 +1,9 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class Java8Optionals {
 
@@ -67,9 +72,58 @@ public class Java8Optionals {
 
   public void playWithOrElseThrow() {
     // Note: This throws an exception if the optional is empty, instead of returning a default value
+    String someValue = "Something";
+    String returnedValue = Optional.ofNullable(someValue).orElseThrow(IllegalArgumentException::new);
+    System.out.println("Value returned from orElseThrow: " + returnedValue);
+
     String nullValue = null;
-    Optional.ofNullable(nullValue).orElseThrow(() -> new IllegalArgumentException());
-    Optional.ofNullable(nullValue).orElseThrow(IllegalArgumentException::new);
+//    returnedValue = Optional.ofNullable(nullValue).orElseThrow(() -> new IllegalArgumentException());
   }
 
+  public void playWithGet() {
+    // Get returns the wrapped value and a NoSuchElementException if empty. Using this goes against
+    // the purpose of having optionals, which is to avoid getting exceptions when using values. With
+    // optionals, we want to anticipate the border cases and provide for them, or explicitly throw
+    // our own exceptions using orElseThrow.
+    // Optionals help us to better program defensively.
+    String value = Optional.of("Ribake").get();
+    System.out.println("Value of non empty optional using get() " + value);
+
+    try {
+      String value2 = (String)Optional.ofNullable(null).get();
+      System.out.println("Value of empty optional using get() " + value2);
+    } catch (NoSuchElementException nse) {
+      nse.printStackTrace();
+      System.out.println("NoSuchElementException thrown as expected");
+    }
+
+  }
+
+  public void chooseDesiredValuesUsingOptionalFilter() {
+    // filter() is used to check if a data value matches a predicate, and return an Optional wrapping
+    // that value if it matches. If not, an empty Optional is returned.
+    // Example below filters number objects between 10 and 15
+    Integer[] numbers = {Integer.valueOf(8), Integer.valueOf(7), Integer.valueOf(15), Integer.valueOf(13),
+                         Integer.valueOf(10), null, Integer.valueOf(6), null, Integer.valueOf(8)};
+
+    List<Integer> numbersWithinRange = new ArrayList<>();
+
+    //POINT: Use a Collection when access to data and management of data is the goal, and use Stream
+    //       when computation on the contents of a data source is the goal.
+    Arrays.stream(numbers).forEach(n -> {
+      Optional<Integer> filteredOptional = Optional.ofNullable(n).filter(i -> i >= 10 && i <= 15);
+      if(filteredOptional.isPresent()){
+        numbersWithinRange.add(filteredOptional.get());
+      }
+    });
+
+//    for (Integer i : numbers) {
+//      Optional<Integer> filteredOptional = Optional.ofNullable(i).filter(n -> n >= 10 && n <= 15);
+//      if(filteredOptional.isPresent()) {
+//        numbersWithinRange.add(filteredOptional.get());
+//      }
+//    }
+
+    System.out.println("The amount of numbers between 10 and 15: " + numbersWithinRange.size());
+  }
 }

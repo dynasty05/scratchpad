@@ -42,11 +42,10 @@ public class Main {
         j8opt.setDefaultValueForAnOptionalWithOrElseGet();
         marker();
         j8opt.playWithOrElseThrow();
-
-
-
-
-
+        marker();
+        j8opt.playWithGet();
+        marker();
+        j8opt.chooseDesiredValuesUsingOptionalFilter();
     }
 
     public static void marker(){
