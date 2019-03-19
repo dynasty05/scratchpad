@@ -48,6 +48,7 @@ public class Main {
         j8opt.chooseDesiredValuesUsingOptionalFilter();
         marker();
         j8opt.transformOptionalValueWithMap();
+        marker();
     }
 
     public static void marker(){

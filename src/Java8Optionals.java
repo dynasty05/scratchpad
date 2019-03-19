@@ -131,6 +131,8 @@ public class Java8Optionals {
     // Mapping generally means performing a computation on a value to return another value.
     // In the context of an optional, it is performing a computation on the value wrapped inside
     // that optional, to produce another optional wrapping the result of the computation.
+    // In the context of a stream, map() performs the computation on every element in the stream,
+    // producing another stream of the computed results.
     // A mapping is generally done using a mapping function, one that conforms to the
     // `Function` functional interface.
 
