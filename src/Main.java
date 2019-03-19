@@ -46,6 +46,8 @@ public class Main {
         j8opt.playWithGet();
         marker();
         j8opt.chooseDesiredValuesUsingOptionalFilter();
+        marker();
+        j8opt.transformOptionalValueWithMap();
     }
 
     public static void marker(){

@@ -126,4 +126,46 @@ public class Java8Optionals {
 
     System.out.println("The amount of numbers between 10 and 15: " + numbersWithinRange.size());
   }
+
+  public void transformOptionalValueWithMap() {
+    // Mapping generally means performing a computation on a value to return another value.
+    // In the context of an optional, it is performing a computation on the value wrapped inside
+    // that optional, to produce another optional wrapping the result of the computation.
+    // A mapping is generally done using a mapping function, one that conforms to the
+    // `Function` functional interface.
+
+    // EXERCISE: A password is valid if it is at least 8 characters in length.
+    // Use Optional map() and other Optional api's to check if a given password is valid.
+
+    String longPassword = "somePasswordLongerThanEightCharacters";
+    String shortPassword = "shrtPwd";
+
+    Optional<String> passwordOptional = Optional.of(longPassword);
+    // Below mapping function returns an integer, so returned optional is an optional of Integer
+    Optional<Integer> passwordLengthOptional = passwordOptional.map((pwd) -> pwd.length());
+    // passwordOptional.map(String::length); Alternative to above
+
+    // The Optional returned from the mapping can further be harnessed using Optional api's to more
+    // elegantly obtain desired result.
+
+    // Using Optional get()
+    if(passwordLengthOptional.get() >= 8){
+      System.out.println("Password is valid.");
+    }
+    // Using Optional filter() to achieve the same thing
+    //    if(passwordLengthOptional.filter(l -> l>=8).isPresent()){
+    //      System.out.println("Password is valid");
+    //    }
+
+    // Now, validate the above two passwords, combining the above techniques.
+    String[] passwords = {longPassword, shortPassword};
+    Arrays.stream(passwords)
+          .forEach(password -> {
+            if(Optional.of(password).map(String::length).filter(l -> l>=8).isPresent()){
+              System.out.println(String.format("Password %s is valid", password));
+            } else{
+              System.out.println(String.format("Password %s is not valid", password));
+            }
+          });
+  }
 }
