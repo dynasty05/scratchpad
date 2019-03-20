@@ -3,7 +3,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 public class Java8Optionals {
 
@@ -169,5 +168,22 @@ public class Java8Optionals {
               System.out.println(String.format("Password %s is not valid", password));
             }
           });
+  }
+
+  public void transformNestedOptionalValuesWithFlatMap() {
+    // Similar to map(), flatMap() performs a computation on an Optional, but flatMap() does not
+    // wrap the result of the computation in an Optional. The mapping function MUST be one that returns
+    // an Optional.
+
+    Optional<OptionalComposite> nestedOptional = Optional.of(new OptionalComposite("Ribake",
+        30, "powerfulpasswprd"));
+    // whereas map nestedOptional.map(OptionalComposite::getName); would give an Optional<Optional<String>>
+    Optional<String> nameOptional = nestedOptional.flatMap(OptionalComposite::getName);
+    //Note:nestedOptional.flatMap(OptionalComposite::getPassword) will not work as the function does not return an Optional
+    Optional<Integer> ageOptional = nestedOptional.flatMap(OptionalComposite::getAge);
+
+    System.out.println("Flat mapped name: " + nameOptional.orElse("???"));
+    System.out.println("Flat mapped age: " + ageOptional.orElse(0));
+
   }
 }

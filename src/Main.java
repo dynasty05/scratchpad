@@ -49,6 +49,7 @@ public class Main {
         marker();
         j8opt.transformOptionalValueWithMap();
         marker();
+        j8opt.transformNestedOptionalValuesWithFlatMap();
     }
 
     public static void marker(){
