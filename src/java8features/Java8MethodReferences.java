@@ -22,11 +22,34 @@ public class Java8MethodReferences {
   }
 
   public void useMethodReferenceInPlaceOfConstructorCreationInLamdbaFunction() {
+    String [] names = {"Ayomide", "Olamide", "Monisola"};
+    // A constructor is a special method, so it can be referenced by a method reference.
+    // This construct can be used for both a no argument and a parameterised constructor,
+    // depending the context that applies on the lambda.
+    // E.g. Map each name string to a User object using a mapping function
 
+    Arrays.stream(names)
+          .map(name -> new User());
+
+    /* Instead of
+    Arrays.stream(names)
+          .map(name -> new User(name));*/
+
+    // This method reference works for the parameterised constructor, not the no argument one.
+    Arrays.stream(names)
+          .map(User::new);
   }
 
   public void useMethodReferenceInPlaceOfStaticMethodCallInLambdaFunction() {
-    //
+    // Suppose there is a static method isRealUser(String) in UserValidation
+    String [] names = {"Ayomide", "Olamide", "Monisola"};
+    /* Instead of
+    Arrays.stream(names)
+          .anyMatch(name -> UserValidation.isRealUser(name));
+    */
+
+    Arrays.stream(names)
+          .anyMatch(UserValidation::isRealUser);
 
   }
 
