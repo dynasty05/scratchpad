@@ -1,3 +1,5 @@
+package java8features;
+
 import java.util.Optional;
 
 public class OptionalComposite {

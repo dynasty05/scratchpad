@@ -1,5 +1,6 @@
-import java.net.MalformedURLException;
 import java.text.ParseException;
+import java8features.Java8MethodReferences;
+import java8features.Java8StaticAndDefaultInterfaceMethods;
 
 public class Main {
 
@@ -30,11 +31,11 @@ public class Main {
         System.out.println(maximumFromList.getMaxFromOneItemList());*/
 
 
-        Java8Optionals j8opt = new Java8Optionals();
+        /*java8features.Java8Optionals j8opt = new java8features.Java8Optionals();
         j8opt.playWithEmptyOptionals();
-//        j8opt.playWithNonNullableOptionals();
+        j8opt.playWithNonNullableOptionals();
         j8opt.playWithNullableOptionals();
-//        j8opt.checkIfOptionalHasAValue();
+        j8opt.checkIfOptionalHasAValue();
         j8opt.doSomethingIfValuePresentInOptional();
         marker();
         j8opt.setDefaultValueForAnOptionalWithOrElse();
@@ -49,7 +50,15 @@ public class Main {
         marker();
         j8opt.transformOptionalValueWithMap();
         marker();
-        j8opt.transformNestedOptionalValuesWithFlatMap();
+        j8opt.transformNestedOptionalValuesWithFlatMap();*/
+
+        Java8StaticAndDefaultInterfaceMethods j8InterfaceMethods = new Java8StaticAndDefaultInterfaceMethods();
+        j8InterfaceMethods.aboutInterfaceDefaultMethods();
+        j8InterfaceMethods.aboutInterfaceStaticMethods();
+
+        Java8MethodReferences java8MethodReferences = new Java8MethodReferences();
+        java8MethodReferences.useMethodReferenceInPlaceOfATypesInstanceMethodInLambdaFunction();
+        marker();
     }
 
     public static void marker(){

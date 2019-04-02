@@ -1,3 +1,5 @@
+package java8features;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -177,9 +179,9 @@ public class Java8Optionals {
 
     Optional<OptionalComposite> nestedOptional = Optional.of(new OptionalComposite("Ribake",
         30, "powerfulpasswprd"));
-    // whereas map nestedOptional.map(OptionalComposite::getName); would give an Optional<Optional<String>>
+    // whereas map nestedOptional.map(java8features.OptionalComposite::getName); would give an Optional<Optional<String>>
     Optional<String> nameOptional = nestedOptional.flatMap(OptionalComposite::getName);
-    //Note:nestedOptional.flatMap(OptionalComposite::getPassword) will not work as the function does not return an Optional
+    //Note:nestedOptional.flatMap(java8features.OptionalComposite::getPassword) will not work as the function does not return an Optional
     Optional<Integer> ageOptional = nestedOptional.flatMap(OptionalComposite::getAge);
 
     System.out.println("Flat mapped name: " + nameOptional.orElse("???"));
