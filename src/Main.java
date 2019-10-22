@@ -1,3 +1,5 @@
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.text.ParseException;
 import java8features.Java8MethodReferences;
 import java8features.Java8StaticAndDefaultInterfaceMethods;
@@ -52,13 +54,29 @@ public class Main {
         marker();
         j8opt.transformNestedOptionalValuesWithFlatMap();*/
 
-        Java8StaticAndDefaultInterfaceMethods j8InterfaceMethods = new Java8StaticAndDefaultInterfaceMethods();
+        /*Java8StaticAndDefaultInterfaceMethods j8InterfaceMethods = new Java8StaticAndDefaultInterfaceMethods();
         j8InterfaceMethods.aboutInterfaceDefaultMethods();
         j8InterfaceMethods.aboutInterfaceStaticMethods();
+        marker();
 
         Java8MethodReferences java8MethodReferences = new Java8MethodReferences();
         java8MethodReferences.useMethodReferenceInPlaceOfATypesInstanceMethodInLambdaFunction();
+        marker();*/
+
+        MD5Hash md5Hash = new MD5Hash();
+        try{
+            md5Hash.hashInput("abcd1234");
+
+        } catch (UnsupportedEncodingException uex) {
+            System.out.println("Encoding not supported");
+            uex.printStackTrace();
+
+        } catch (NoSuchAlgorithmException nsa){
+            System.out.println("Hashing algorithm does not exist");
+            nsa.printStackTrace();
+        }
         marker();
+
     }
 
     public static void marker(){

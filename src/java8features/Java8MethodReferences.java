@@ -50,7 +50,6 @@ public class Java8MethodReferences {
 
     Arrays.stream(names)
           .anyMatch(UserValidation::isRealUser);
-
   }
 
   public void useMethodReferenceInPlaceOfAnObjectsInstanceMethodInLambdaFunction() {
